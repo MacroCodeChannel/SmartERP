@@ -5,8 +5,8 @@
         public int Id { get; set; }
         public string DocumentNo { get; set; }
         public int DocumentTypeId { get; set; }
+        public string Payee { get; set; }
         public SystemCodeDetail DocumentType { get; set; }
-
         public int PaymentModeId { get; set; }
         public SystemCodeDetail PaymentMode { get; set; }
 

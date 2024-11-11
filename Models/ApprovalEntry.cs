@@ -7,11 +7,11 @@ namespace SmartERP.Models
         public int Id { get; set; }
 
         [DisplayName("Record Id")]
-        public int RecordId { get; set; }
+        public int RecordId { get; set; } // Primary Key of the Document
 
 
         [DisplayName("Document Type")]
-        public int DocumentTypeId { get; set; } //Leave Application
+        public int DocumentTypeId { get; set; } //Leave Application,invoice,Leave Rejection
         public SystemCodeDetail DocumentType { get; set; }
 
 
@@ -19,12 +19,12 @@ namespace SmartERP.Models
         public int SequenceNo { get; set; } // 1,2,3,4,5,6 (Approvals)
 
         [DisplayName("Approver Name")]
-        public string ApproverId { get; set; } // 1,2,3,4,5,6 (Approvers)
+        public string ApproverId { get; set; } // 1,2,3,4,5,6 (Approvers), session user
         public ApplicationUser Approver { get; set; }
 
 
         [DisplayName("Status")]
-        public int StatusId { get; set; } //Status of the document
+        public int StatusId { get; set; } //Status of the document,pending approval/REJECT/APPROVE
         public SystemCodeDetail Status { get; set; }
 
         [DisplayName("Date Sent for Apporval")]

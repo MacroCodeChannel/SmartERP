@@ -2,17 +2,17 @@
 
 namespace SmartERP.Models
 {
-    public class Department:ModificationActivity
+    public class Office:ModificationActivity
     {
         [DisplayName("No")]
         public int Id { get; set; }
 
 
-        [DisplayName("Department Code")]
+        [DisplayName("Office Code")]
         public string Code { get; set; }
 
 
-        [DisplayName("Department Name")]
+        [DisplayName("Office Name")]
         public string Name { get; set; }
     }
 }

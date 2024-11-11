@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics.Metrics;
 
 namespace SmartERP.Models
 {
-    public class Employee: ModificationActivity
+    public class Consultant : ModificationActivity
     {
         public int Id { get; set; }
         public string EmpNo { get; set; }
@@ -55,37 +54,14 @@ namespace SmartERP.Models
         public int? StatusId { get; set; }
         public SystemCodeDetail Status { get; set; }
 
-        public DateTime? InactiveDate { get; set; }
-        public int? CauseofInactivityId { get; set; }
-        public SystemCodeDetail CauseofInactivity { get; set; }
-
-        public DateTime? TerminationDate { get; set; }
-        public int? TerminationReasonId{ get; set; }
-        public SystemCodeDetail Reasonfortermination { get; set; }
-
         public int? BankId { get; set; }
         public Bank Bank { get; set; }
-
 
         [DisplayName("Company Email Address")]
         public string? CompanyEmail { get; set; }
 
         [DisplayName("Passport No")]
         public string? PassportNo { get; set; }
-
-
-        [DisplayName("Employment Terms")]
-        public int? EmploymentTermsId { get; set; }
-        public SystemCodeDetail EmploymentTerms { get; set; }
-
-        [DisplayName("Allocated Leave Balance")]
-        public Decimal? AllocatedLeaveDays { get; set; }
-
-        [DisplayName("Leave Balance")]
-        public Decimal? LeaveOutStandingBalance { get; set; }
-
-        [DisplayName("Pays Tax")]
-        public bool? PaysTax { get; set; }
 
         [DisplayName("Disability Type")]
         public int? DisabilityId { get; set; }
@@ -94,7 +70,5 @@ namespace SmartERP.Models
         public string? DisabilityCertificate { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
-
     }
 }
-

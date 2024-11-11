@@ -7,6 +7,8 @@
         public PurchaseHeader PurchaseHeader { get; set; }
         public int TypeId { get; set; }
         public SystemCodeDetail Type { get; set; }
+        public int UnitofMeasureId { get; set; }
+        public SystemCodeDetail UnitofMeasure { get; set; }
         public int ItemId { get; set; }
         public Item Item { get; set; }
         public int Quantity { get; set; }
