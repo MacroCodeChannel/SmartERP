@@ -1,6 +1,6 @@
 ﻿namespace SmartERP.Models
 {
-    public class TimeSheetLines
+    public class TimeSheetLine
     {
         public int Id { get; set; }
         public int TimeSheetId { get; set; }

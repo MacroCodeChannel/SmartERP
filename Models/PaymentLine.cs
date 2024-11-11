@@ -1,6 +1,6 @@
 ﻿namespace SmartERP.Models
 {
-    public class PaymentLines
+    public class PaymentLine
     {
         public int Id { get; set; }
         public int PaymentId { get; set; }
