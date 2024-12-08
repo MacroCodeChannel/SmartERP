@@ -67,6 +67,10 @@ namespace SmartERP.Models
         public Bank Bank { get; set; }
 
 
+        [DisplayName("Bank Account No")]
+        public string BankAccountNo { get; set; }
+
+
         [DisplayName("Company Email Address")]
         public string? CompanyEmail { get; set; }
 
@@ -94,6 +98,9 @@ namespace SmartERP.Models
         public string? DisabilityCertificate { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
+
+        public int? ReportsToId { get; set; }
+        public Employee ReportsTo { get; set; }
 
     }
 }

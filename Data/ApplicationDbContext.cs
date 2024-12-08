@@ -15,17 +15,23 @@ namespace SmartERP.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ApplicationUser>(entity =>
-            {
-                entity.ToTable("Users");
-                entity.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<IdentityRole>(entity =>
-            {
-                entity.ToTable("Roles");
-                entity.HasKey(e => e.Id);
-            });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityRole>()
+            .Property(r => r.Name)
+            .HasMaxLength(256);
+
+            modelBuilder.Entity<IdentityRole>()
+            .Property(r => r.NormalizedName)
+            .HasMaxLength(256);
+
+            modelBuilder.Entity<IdentityRole>()
+           .Property(r => r.ConcurrencyStamp)
+           .HasMaxLength(256);
+            
         }
+
+        
         public DbSet<Office> Offices { get; set; }
         public DbSet<SystemCode> SystemCodes { get; set; }
         public DbSet<SystemCodeDetail> SystemCodeDetails { get; set; }
@@ -56,5 +62,13 @@ namespace SmartERP.Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Designation> Designations { get; set; }
         public DbSet<AuditTrail> AuditTrails { get; set; }
+        public DbSet<NumberSeriesSetup> NumberSeriesSetups { get; set; }
+        public DbSet<OrderRequest> OrderRequests { get; set; }
+        public DbSet<OrderRequestLine> OrderRequestLines { get; set; }
+
+        public DbSet<SystemSetting> SystemSettings { get; set; }
+
+        public DbSet<ApprovalEntry> ApprovalEntries { get; set; }
+
     }
 }

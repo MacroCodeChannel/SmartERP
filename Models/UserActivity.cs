@@ -8,13 +8,14 @@ namespace SmartERP.Models
         [DisplayName("Created By")]
         public string CreatedById { get; set; }
         public IdentityUser CreatedBy { get; set; }
+        [DisplayName("Created On")]
+        public DateTime? CreatedOn { get; set; }
     }
     public class ModificationActivity : CreationActivity
     {
         [DisplayName("Modified By")]
         public string? ModifiedById { get; set; }
         public IdentityUser ModifiedBy { get; set; }
-
 
         [DisplayName("Modified On")]
         public DateTime? ModifiedOn { get; set; }

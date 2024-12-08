@@ -11,5 +11,11 @@ namespace SmartERP.Models
         public Employee Employee { get; set; }
         public int RoleId { get; set; }
         public IdentityRole Role { get; set; }
+        public int? ReportsToId { get; set; }
+        public ProjectMember ReportsTo { get; set; }
+        public int? ConsultantId { get; set; }
+        public Consultant Consultant { get; set; }
+        public int? ContractId { get; set; }
+        public Consultant Contract { get; set; }
     }
 }

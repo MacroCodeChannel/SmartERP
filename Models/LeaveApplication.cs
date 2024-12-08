@@ -21,9 +21,6 @@ namespace SmartERP.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime EndDate { get; set; }
 
-        [Display(Name = "Leave Duration")]
-        public int DurationId { get; set; }
-        public SystemCodeDetail Duration { get; set; }
 
         [Display(Name = "Leave Type")]
         public int LeaveTypeId { get; set; }
