@@ -5,19 +5,10 @@ namespace SmartERP.Models
     public class Consultant : ModificationActivity
     {
         public int Id { get; set; }
-        public string EmpNo { get; set; }
+        public string Code { get; set; }
 
-        [DisplayName("First Name")]
-        public string FirstName { get; set; }
-
-        [DisplayName("Middle Name")]
-        public string MiddleName { get; set; }
-
-
-        [DisplayName("Last Name")]
-        public string LastName { get; set; }
-
-        public string FullName => $"{FirstName} {MiddleName} {LastName}";
+        [DisplayName("Full Name")]
+        public string FullName { get; set; }
 
         [DisplayName("Phone Number")]
         public int PhoneNumber { get; set; }
@@ -29,10 +20,6 @@ namespace SmartERP.Models
 
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
-
-        [DisplayName("Office Name")]
-        public int? OfficeId { get; set; }
-        public Office Office { get; set; }
 
         [DisplayName("Designation Name")]
         public int? DesignationId { get; set; }
@@ -57,6 +44,9 @@ namespace SmartERP.Models
         public int? BankId { get; set; }
         public Bank Bank { get; set; }
 
+        [DisplayName("Bank Account No")]
+        public string BankAccountNo { get; set; }
+
         [DisplayName("Company Email Address")]
         public string? CompanyEmail { get; set; }
 
@@ -70,5 +60,8 @@ namespace SmartERP.Models
         public string? DisabilityCertificate { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
+
+        public string? UserAccountId { get; set; }
+        public ApplicationUser UserAccount { get; set; }
     }
 }

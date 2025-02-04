@@ -258,6 +258,10 @@ namespace SmartERP.Migrations
                     b.Property<DateTime>("DateSentForApproval")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("DocumentNo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("DocumentTypeId")
                         .HasColumnType("int");
 
@@ -274,6 +278,9 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("PriorityTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RecordId")
                         .HasColumnType("int");
 
@@ -281,6 +288,13 @@ namespace SmartERP.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserGroupMemberId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -295,7 +309,11 @@ namespace SmartERP.Migrations
 
                     b.HasIndex("ModifiedById");
 
+                    b.HasIndex("PriorityTypeId");
+
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("UserGroupMemberId");
 
                     b.ToTable("ApprovalEntries");
                 });
@@ -383,6 +401,9 @@ namespace SmartERP.Migrations
                     b.Property<string>("IBAN")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
@@ -491,8 +512,16 @@ namespace SmartERP.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("BankAccountNo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int?>("BankId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CompanyEmail")
                         .HasColumnType("longtext");
@@ -520,39 +549,24 @@ namespace SmartERP.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("EmpNo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime?>("EmploymentDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int?>("GenderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
-
-                    b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("OfficeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("PassportNo")
                         .HasColumnType("longtext");
@@ -565,6 +579,9 @@ namespace SmartERP.Migrations
 
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserAccountId")
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -582,9 +599,9 @@ namespace SmartERP.Migrations
 
                     b.HasIndex("ModifiedById");
 
-                    b.HasIndex("OfficeId");
-
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("Consultants");
                 });
@@ -610,6 +627,9 @@ namespace SmartERP.Migrations
                     b.Property<int>("ContractLeadId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ContractLeadId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("ContractTypeId")
                         .HasColumnType("int");
 
@@ -620,6 +640,18 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<decimal?>("DailyRate")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<decimal>("Days")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -627,15 +659,32 @@ namespace SmartERP.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("LumpsumAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<decimal?>("MonthlyRate")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<decimal>("Months")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -643,11 +692,14 @@ namespace SmartERP.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProjectTitleId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<decimal>("TotalHours")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -655,11 +707,13 @@ namespace SmartERP.Migrations
 
                     b.HasIndex("ConsultantId");
 
-                    b.HasIndex("ContractLeadId");
+                    b.HasIndex("ContractLeadId1");
 
                     b.HasIndex("ContractTypeId");
 
                     b.HasIndex("CreatedById");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("ModifiedById");
 
@@ -667,7 +721,39 @@ namespace SmartERP.Migrations
 
                     b.HasIndex("ProjectId");
 
+                    b.HasIndex("ProjectTitleId");
+
+                    b.HasIndex("StatusId");
+
                     b.ToTable("Contracts");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ContractDeliverable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Days")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<string>("TaskName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractId");
+
+                    b.ToTable("ContractDeliverables");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Country", b =>
@@ -688,6 +774,9 @@ namespace SmartERP.Migrations
 
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
@@ -807,7 +896,7 @@ namespace SmartERP.Migrations
                     b.Property<int?>("EmploymentTermsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -817,19 +906,11 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("InactiveDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<decimal?>("LeaveOutStandingBalance")
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
-
-                    b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
@@ -867,6 +948,9 @@ namespace SmartERP.Migrations
                     b.Property<int?>("TerminationReasonId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserAccountId")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
@@ -894,6 +978,8 @@ namespace SmartERP.Migrations
                     b.HasIndex("ReportsToId");
 
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("Employees");
                 });
@@ -1060,6 +1146,99 @@ namespace SmartERP.Migrations
                     b.ToTable("FixedAssets");
                 });
 
+            modelBuilder.Entity("SmartERP.Models.GoodsReceivedNoteHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("PurchaseHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiptLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReceivedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("PurchaseHeaderId");
+
+                    b.HasIndex("ReceiptLocationId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("GoodsReceivedNoteHeaders");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.GoodsReceivedNoteLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("GRNHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ItemDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnitofMeasureId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GRNHeaderId");
+
+                    b.HasIndex("UnitofMeasureId");
+
+                    b.ToTable("GoodsReceivedNoteLines");
+                });
+
             modelBuilder.Entity("SmartERP.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -1068,7 +1247,7 @@ namespace SmartERP.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("BudgetItemId")
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
@@ -1082,43 +1261,28 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Notes")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("UnitCost")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("UnitofMeasureId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("BudgetItemId");
 
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("ModifiedById");
 
                     b.HasIndex("StatusId");
-
-                    b.HasIndex("UnitofMeasureId");
 
                     b.ToTable("Items");
                 });
@@ -1208,6 +1372,12 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("GradeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
@@ -1222,6 +1392,8 @@ namespace SmartERP.Migrations
 
                     b.HasIndex("CreatedById");
 
+                    b.HasIndex("GradeId");
+
                     b.HasIndex("ModifiedById");
 
                     b.ToTable("Location");
@@ -1234,6 +1406,9 @@ namespace SmartERP.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("AllowYearCode")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -1302,6 +1477,9 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
@@ -1329,6 +1507,10 @@ namespace SmartERP.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -1349,9 +1531,20 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<decimal>("OrderAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<int?>("OrderTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PaidAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
@@ -1364,6 +1557,8 @@ namespace SmartERP.Migrations
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("ModifiedById");
+
+                    b.HasIndex("OrderTypeId");
 
                     b.HasIndex("ProjectId");
 
@@ -1384,30 +1579,39 @@ namespace SmartERP.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ItemDescription")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ItemId")
-                        .HasColumnType("int");
+                    b.Property<string>("ItemName")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("OrderAmount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("OrderRequestId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("PaidOrderAmount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(65,30)");
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.Property<int>("UnitOfMeasureId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(65,30)");
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
 
                     b.HasIndex("OrderRequestId");
 
@@ -1424,12 +1628,24 @@ namespace SmartERP.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ChequeDate")
+                    b.Property<decimal>("Amount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<DateTime?>("ChequeDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ChequeNo")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("ConsultantId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedById")
                         .IsRequired()
@@ -1438,14 +1654,13 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("CurrencyTypeId")
+                    b.Property<int>("DocumentTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DocumentNo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("DocumentTypeId")
+                    b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedById")
@@ -1454,32 +1669,52 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Payee")
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PaymentDescription")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("PaymentModeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentStatusId")
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TransferCharges")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<int?>("VendorId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ConsultantId");
+
                     b.HasIndex("CreatedById");
 
-                    b.HasIndex("CurrencyTypeId");
-
                     b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("InvoiceId");
 
                     b.HasIndex("ModifiedById");
 
                     b.HasIndex("PaymentModeId");
 
-                    b.HasIndex("PaymentStatusId");
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Payments");
                 });
@@ -1492,20 +1727,20 @@ namespace SmartERP.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PaymentId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("TotalAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("ItemTypeId");
 
                     b.HasIndex("PaymentId");
 
@@ -1583,6 +1818,213 @@ namespace SmartERP.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("ProjectBudgetCategories");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApprovedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ApprovedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApprovedById");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectBudgetHeaders");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetHeaderLines", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BudgetItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Quantity")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<decimal>("TotalCost")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<decimal>("UnitCost")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BudgetItemId");
+
+                    b.HasIndex("HeaderId");
+
+                    b.ToTable("ProjectBudgetHeaderLines");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BudgetLineId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BudgetLineId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("ProjectBudgetItems");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BudgetCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BudgetCategoryId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("ProjectBudgetLines");
                 });
 
             modelBuilder.Entity("SmartERP.Models.ProjectLocation", b =>
@@ -1667,6 +2109,9 @@ namespace SmartERP.Migrations
                     b.Property<string>("RoleId1")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ConsultantId");
@@ -1685,7 +2130,106 @@ namespace SmartERP.Migrations
 
                     b.HasIndex("RoleId1");
 
+                    b.HasIndex("StatusId");
+
                     b.ToTable("ProjectMembers");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectMilestone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CompletionDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("PhaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("PhaseId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectMilestones");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectPhase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectPhases");
                 });
 
             modelBuilder.Entity("SmartERP.Models.ProjectUpdate", b =>
@@ -1743,6 +2287,9 @@ namespace SmartERP.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("ConsultantId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -1750,15 +2297,11 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("CurrencyId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int?>("DeliveryLocationId")
+                        .HasColumnType("int");
 
                     b.Property<int>("DocumentTypeId")
                         .HasColumnType("int");
@@ -1769,17 +2312,16 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("PaymentTermId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PurchasHeaderId")
                         .HasColumnType("int");
 
                     b.Property<int>("PurchaseTypeId")
@@ -1789,24 +2331,31 @@ namespace SmartERP.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(65,30)");
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
-                    b.Property<int>("VendorId")
+                    b.Property<int?>("VendorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ConsultantId");
+
                     b.HasIndex("CreatedById");
 
-                    b.HasIndex("CurrencyId");
+                    b.HasIndex("DeliveryLocationId");
 
                     b.HasIndex("DocumentTypeId");
 
                     b.HasIndex("ModifiedById");
 
-                    b.HasIndex("PaymentTermId");
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("PurchasHeaderId");
 
                     b.HasIndex("PurchaseTypeId");
 
@@ -1825,38 +2374,167 @@ namespace SmartERP.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
+                    b.Property<string>("ItemDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PurchaseHeaderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
+                    b.Property<decimal>("Quantity")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<int?>("TimesheetLineId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalCost")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(65,30)");
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.Property<int>("UnitofMeasureId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
-
                     b.HasIndex("PurchaseHeaderId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("TimesheetLineId");
 
                     b.HasIndex("UnitofMeasureId");
 
                     b.ToTable("PurchaseLines");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.SalesHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApprovedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ApprovedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("DocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("InvoiceDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApprovedById");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("SalesHeaders");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.SalesLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ItemDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalesHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCost")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<decimal>("UnitPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<int>("UnitofMeasureId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalesHeaderId");
+
+                    b.HasIndex("UnitofMeasureId");
+
+                    b.ToTable("SalesLines");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Skill", b =>
@@ -1930,6 +2608,9 @@ namespace SmartERP.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
@@ -1967,6 +2648,9 @@ namespace SmartERP.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
@@ -2029,6 +2713,52 @@ namespace SmartERP.Migrations
                     b.ToTable("SystemSettings");
                 });
 
+            modelBuilder.Entity("SmartERP.Models.SystemTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("OrderNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("SystemRights");
+                });
+
             modelBuilder.Entity("SmartERP.Models.TimeSheet", b =>
                 {
                     b.Property<int>("Id")
@@ -2036,6 +2766,13 @@ namespace SmartERP.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("ConsultantId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedById")
                         .IsRequired()
@@ -2060,10 +2797,15 @@ namespace SmartERP.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TimesheetTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConsultantId");
 
                     b.HasIndex("CreatedById");
 
@@ -2072,6 +2814,8 @@ namespace SmartERP.Migrations
                     b.HasIndex("ModifiedById");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("TimesheetTypeId");
 
@@ -2103,7 +2847,10 @@ namespace SmartERP.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalHours")
-                        .HasColumnType("decimal(65,30)");
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
 
                     b.HasKey("Id");
 
@@ -2114,6 +2861,235 @@ namespace SmartERP.Migrations
                     b.HasIndex("TimeSheetId");
 
                     b.ToTable("TimeSheetLines");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.TravelRequesLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ItemDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCost")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<int>("TravelRequestHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitCost")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<int>("UnitofMeasureId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TravelRequestHeaderId");
+
+                    b.HasIndex("UnitofMeasureId");
+
+                    b.ToTable("TravelRequesLines");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.TravelRequestHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("AdvanceAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)")
+                        .HasDefaultValueSql("00.000");
+
+                    b.Property<string>("ApprovedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ApprovedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ArrivalToId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DepartureDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("DestinationFromId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModeofTransportId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("OtherTravelArrangements")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("SpecialInstructions")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TravelDocNo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TravelDocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TravelReason")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApprovedById");
+
+                    b.HasIndex("ArrivalToId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DestinationFromId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ModeofTransportId");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("TravelDocumentTypeId");
+
+                    b.ToTable("TravelRequestHeaders");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.TravelRequestMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PassportNo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ProjectMemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpecialInstruction")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TravelRequestHeaderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectMemberId");
+
+                    b.HasIndex("TravelRequestHeaderId");
+
+                    b.ToTable("TravelRequestMembers");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.UserRoleProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("RoleProfiles");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Vendor", b =>
@@ -2266,12 +3242,18 @@ namespace SmartERP.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("PriorityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("SenderId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
+
+                    b.Property<int>("SequenceNo")
+                        .HasColumnType("int");
 
                     b.Property<int>("WorkFlowUserGroupId")
                         .HasColumnType("int");
@@ -2283,6 +3265,8 @@ namespace SmartERP.Migrations
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("ModifiedById");
+
+                    b.HasIndex("PriorityId");
 
                     b.HasIndex("RoleId");
 
@@ -2420,9 +3404,21 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "PriorityType")
+                        .WithMany()
+                        .HasForeignKey("PriorityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.WorkFlowUserGroupMember", "UserGroupMember")
+                        .WithMany()
+                        .HasForeignKey("UserGroupMemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2436,7 +3432,11 @@ namespace SmartERP.Migrations
 
                     b.Navigation("ModifiedBy");
 
+                    b.Navigation("PriorityType");
+
                     b.Navigation("Status");
+
+                    b.Navigation("UserGroupMember");
                 });
 
             modelBuilder.Entity("SmartERP.Models.AuditTrail", b =>
@@ -2540,13 +3540,13 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
-                    b.HasOne("SmartERP.Models.Office", "Office")
-                        .WithMany()
-                        .HasForeignKey("OfficeId");
-
                     b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId");
+
+                    b.HasOne("SmartERP.Models.ApplicationUser", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountId");
 
                     b.Navigation("Bank");
 
@@ -2562,9 +3562,9 @@ namespace SmartERP.Migrations
 
                     b.Navigation("ModifiedBy");
 
-                    b.Navigation("Office");
-
                     b.Navigation("Status");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Contract", b =>
@@ -2575,15 +3575,15 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartERP.Models.Employee", "Consultant")
+                    b.HasOne("SmartERP.Models.Consultant", "Consultant")
                         .WithMany()
                         .HasForeignKey("ConsultantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartERP.Models.Employee", "ContractLead")
+                    b.HasOne("SmartERP.Models.ProjectMember", "ContractLead")
                         .WithMany()
-                        .HasForeignKey("ContractLeadId")
+                        .HasForeignKey("ContractLeadId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2599,11 +3599,17 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SmartERP.Models.ProjectLocation", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
-                    b.HasOne("SmartERP.Models.Payment", "Order")
+                    b.HasOne("SmartERP.Models.OrderRequest", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2612,6 +3618,18 @@ namespace SmartERP.Migrations
                     b.HasOne("SmartERP.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "ProjectTitle")
+                        .WithMany()
+                        .HasForeignKey("ProjectTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2625,11 +3643,28 @@ namespace SmartERP.Migrations
 
                     b.Navigation("CreatedBy");
 
+                    b.Navigation("Location");
+
                     b.Navigation("ModifiedBy");
 
                     b.Navigation("Order");
 
                     b.Navigation("Project");
+
+                    b.Navigation("ProjectTitle");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ContractDeliverable", b =>
+                {
+                    b.HasOne("SmartERP.Models.Contract", "Contract")
+                        .WithMany()
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contract");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Country", b =>
@@ -2726,6 +3761,10 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("StatusId");
 
+                    b.HasOne("SmartERP.Models.ApplicationUser", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountId");
+
                     b.Navigation("Bank");
 
                     b.Navigation("CauseofInactivity");
@@ -2751,6 +3790,8 @@ namespace SmartERP.Migrations
                     b.Navigation("ReportsTo");
 
                     b.Navigation("Status");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Evaluation", b =>
@@ -2864,13 +3905,71 @@ namespace SmartERP.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("SmartERP.Models.Item", b =>
+            modelBuilder.Entity("SmartERP.Models.GoodsReceivedNoteHeader", b =>
                 {
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Category")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.PurchaseHeader", "PurchaseHeader")
+                        .WithMany()
+                        .HasForeignKey("PurchaseHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.Location", "ReceiptLocation")
+                        .WithMany()
+                        .HasForeignKey("ReceiptLocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("PurchaseHeader");
+
+                    b.Navigation("ReceiptLocation");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.GoodsReceivedNoteLine", b =>
+                {
+                    b.HasOne("SmartERP.Models.GoodsReceivedNoteHeader", "GRNHeader")
+                        .WithMany("GoodsReceivedNoteLines")
+                        .HasForeignKey("GRNHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "UnitofMeasure")
+                        .WithMany()
+                        .HasForeignKey("UnitofMeasureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GRNHeader");
+
+                    b.Navigation("UnitofMeasure");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.Item", b =>
+                {
+                    b.HasOne("SmartERP.Models.ProjectBudgetItem", "BudgetItem")
+                        .WithMany()
+                        .HasForeignKey("BudgetItemId");
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
                         .WithMany()
@@ -2888,21 +3987,13 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "UnitofMeasure")
-                        .WithMany()
-                        .HasForeignKey("UnitofMeasureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
+                    b.Navigation("BudgetItem");
 
                     b.Navigation("CreatedBy");
 
                     b.Navigation("ModifiedBy");
 
                     b.Navigation("Status");
-
-                    b.Navigation("UnitofMeasure");
                 });
 
             modelBuilder.Entity("SmartERP.Models.LeaveApplication", b =>
@@ -2960,11 +4051,19 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Grade")
+                        .WithMany()
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
                     b.Navigation("CreatedBy");
+
+                    b.Navigation("Grade");
 
                     b.Navigation("ModifiedBy");
                 });
@@ -3031,6 +4130,10 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "OrderType")
+                        .WithMany()
+                        .HasForeignKey("OrderTypeId");
+
                     b.HasOne("SmartERP.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
@@ -3047,6 +4150,8 @@ namespace SmartERP.Migrations
 
                     b.Navigation("ModifiedBy");
 
+                    b.Navigation("OrderType");
+
                     b.Navigation("Project");
 
                     b.Navigation("Status");
@@ -3054,10 +4159,6 @@ namespace SmartERP.Migrations
 
             modelBuilder.Entity("SmartERP.Models.OrderRequestLine", b =>
                 {
-                    b.HasOne("SmartERP.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId");
-
                     b.HasOne("SmartERP.Models.OrderRequest", "OrderRequest")
                         .WithMany()
                         .HasForeignKey("OrderRequestId")
@@ -3070,8 +4171,6 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Item");
-
                     b.Navigation("OrderRequest");
 
                     b.Navigation("UnitOfMeasure");
@@ -3079,15 +4178,13 @@ namespace SmartERP.Migrations
 
             modelBuilder.Entity("SmartERP.Models.Payment", b =>
                 {
+                    b.HasOne("SmartERP.Models.Consultant", "Consultant")
+                        .WithMany()
+                        .HasForeignKey("ConsultantId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "CurrencyType")
-                        .WithMany()
-                        .HasForeignKey("CurrencyTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3096,6 +4193,14 @@ namespace SmartERP.Migrations
                         .HasForeignKey("DocumentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SmartERP.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
+
+                    b.HasOne("SmartERP.Models.PurchaseHeader", "Invoice")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId");
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
                         .WithMany()
@@ -3107,48 +4212,48 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "PaymentStatus")
+                    b.HasOne("SmartERP.Models.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("PaymentStatusId")
+                        .HasForeignKey("ProjectId");
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SmartERP.Models.Vendor", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("Consultant");
+
                     b.Navigation("CreatedBy");
 
-                    b.Navigation("CurrencyType");
-
                     b.Navigation("DocumentType");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Invoice");
 
                     b.Navigation("ModifiedBy");
 
                     b.Navigation("PaymentMode");
 
-                    b.Navigation("PaymentStatus");
+                    b.Navigation("Project");
+
+                    b.Navigation("Status");
+
+                    b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("SmartERP.Models.PaymentLine", b =>
                 {
-                    b.HasOne("SmartERP.Models.Payment", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartERP.Models.Payment", "ItemType")
-                        .WithMany()
-                        .HasForeignKey("ItemTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SmartERP.Models.Payment", "Payment")
                         .WithMany()
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("ItemType");
 
                     b.Navigation("Payment");
                 });
@@ -3208,6 +4313,123 @@ namespace SmartERP.Migrations
                     b.Navigation("ProjectType");
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetCategory", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetHeader", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ApprovedBy")
+                        .WithMany()
+                        .HasForeignKey("ApprovedById");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApprovedBy");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetHeaderLines", b =>
+                {
+                    b.HasOne("SmartERP.Models.ProjectBudgetItem", "BudgetItem")
+                        .WithMany()
+                        .HasForeignKey("BudgetItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.ProjectBudgetHeader", "Header")
+                        .WithMany()
+                        .HasForeignKey("HeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BudgetItem");
+
+                    b.Navigation("Header");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetItem", b =>
+                {
+                    b.HasOne("SmartERP.Models.ProjectBudgetLine", "BudgetLine")
+                        .WithMany()
+                        .HasForeignKey("BudgetLineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("BudgetLine");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectBudgetLine", b =>
+                {
+                    b.HasOne("SmartERP.Models.ProjectBudgetCategory", "BudgetCategory")
+                        .WithMany()
+                        .HasForeignKey("BudgetCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("BudgetCategory");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("SmartERP.Models.ProjectLocation", b =>
@@ -3283,6 +4505,12 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId1");
 
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Consultant");
 
                     b.Navigation("Contract");
@@ -3298,6 +4526,66 @@ namespace SmartERP.Migrations
                     b.Navigation("ReportsTo");
 
                     b.Navigation("Role");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectMilestone", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.ProjectPhase", "Phase")
+                        .WithMany()
+                        .HasForeignKey("PhaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Phase");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.ProjectPhase", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("SmartERP.Models.ProjectUpdate", b =>
@@ -3327,17 +4615,19 @@ namespace SmartERP.Migrations
 
             modelBuilder.Entity("SmartERP.Models.PurchaseHeader", b =>
                 {
+                    b.HasOne("SmartERP.Models.Consultant", "Consultant")
+                        .WithMany()
+                        .HasForeignKey("ConsultantId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Currency")
+                    b.HasOne("SmartERP.Models.Location", "DeliveryLocation")
                         .WithMany()
-                        .HasForeignKey("CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DeliveryLocationId");
 
                     b.HasOne("SmartERP.Models.SystemCodeDetail", "DocumentType")
                         .WithMany()
@@ -3349,17 +4639,17 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "PaymentTerm")
+                    b.HasOne("SmartERP.Models.OrderRequest", "Order")
                         .WithMany()
-                        .HasForeignKey("PaymentTermId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("SmartERP.Models.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjectId");
+
+                    b.HasOne("SmartERP.Models.PurchaseHeader", "PurchasHeader")
+                        .WithMany()
+                        .HasForeignKey("PurchasHeaderId");
 
                     b.HasOne("SmartERP.Models.SystemCodeDetail", "PurchaseType")
                         .WithMany()
@@ -3375,21 +4665,23 @@ namespace SmartERP.Migrations
 
                     b.HasOne("SmartERP.Models.Vendor", "Vendor")
                         .WithMany()
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("Consultant");
 
                     b.Navigation("CreatedBy");
 
-                    b.Navigation("Currency");
+                    b.Navigation("DeliveryLocation");
 
                     b.Navigation("DocumentType");
 
                     b.Navigation("ModifiedBy");
 
-                    b.Navigation("PaymentTerm");
+                    b.Navigation("Order");
 
                     b.Navigation("Project");
+
+                    b.Navigation("PurchasHeader");
 
                     b.Navigation("PurchaseType");
 
@@ -3400,21 +4692,87 @@ namespace SmartERP.Migrations
 
             modelBuilder.Entity("SmartERP.Models.PurchaseLine", b =>
                 {
-                    b.HasOne("SmartERP.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SmartERP.Models.PurchaseHeader", "PurchaseHeader")
                         .WithMany("PurchaseLines")
                         .HasForeignKey("PurchaseHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Type")
+                    b.HasOne("SmartERP.Models.TimeSheetLine", "TimesheetLine")
                         .WithMany()
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("TimesheetLineId");
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "UnitofMeasure")
+                        .WithMany()
+                        .HasForeignKey("UnitofMeasureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PurchaseHeader");
+
+                    b.Navigation("TimesheetLine");
+
+                    b.Navigation("UnitofMeasure");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.SalesHeader", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ApprovedBy")
+                        .WithMany()
+                        .HasForeignKey("ApprovedById");
+
+                    b.HasOne("SmartERP.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "DocumentType")
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApprovedBy");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DocumentType");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.SalesLine", b =>
+                {
+                    b.HasOne("SmartERP.Models.SalesHeader", "SalesHeader")
+                        .WithMany("SalesLines")
+                        .HasForeignKey("SalesHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3424,11 +4782,7 @@ namespace SmartERP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Item");
-
-                    b.Navigation("PurchaseHeader");
-
-                    b.Navigation("Type");
+                    b.Navigation("SalesHeader");
 
                     b.Navigation("UnitofMeasure");
                 });
@@ -3521,8 +4875,35 @@ namespace SmartERP.Migrations
                     b.Navigation("ModifiedBy");
                 });
 
+            modelBuilder.Entity("SmartERP.Models.SystemTask", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.SystemTask", "Parent")
+                        .WithMany("ChildTasks")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("SmartERP.Models.TimeSheet", b =>
                 {
+                    b.HasOne("SmartERP.Models.ProjectMember", "Consultant")
+                        .WithMany()
+                        .HasForeignKey("ConsultantId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
@@ -3541,9 +4922,17 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("ProjectId");
 
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SmartERP.Models.SystemCodeDetail", "TimesheetType")
                         .WithMany()
                         .HasForeignKey("TimesheetTypeId");
+
+                    b.Navigation("Consultant");
 
                     b.Navigation("CreatedBy");
 
@@ -3553,12 +4942,14 @@ namespace SmartERP.Migrations
 
                     b.Navigation("Project");
 
+                    b.Navigation("Status");
+
                     b.Navigation("TimesheetType");
                 });
 
             modelBuilder.Entity("SmartERP.Models.TimeSheetLine", b =>
                 {
-                    b.HasOne("SmartERP.Models.Location", "Location")
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId");
 
@@ -3577,6 +4968,154 @@ namespace SmartERP.Migrations
                     b.Navigation("Project");
 
                     b.Navigation("TimeSheet");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.TravelRequesLine", b =>
+                {
+                    b.HasOne("SmartERP.Models.TravelRequestHeader", "TravelRequestHeader")
+                        .WithMany()
+                        .HasForeignKey("TravelRequestHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "UnitofMeasure")
+                        .WithMany()
+                        .HasForeignKey("UnitofMeasureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TravelRequestHeader");
+
+                    b.Navigation("UnitofMeasure");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.TravelRequestHeader", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ApprovedBy")
+                        .WithMany()
+                        .HasForeignKey("ApprovedById");
+
+                    b.HasOne("SmartERP.Models.Location", "ArrivalTo")
+                        .WithMany()
+                        .HasForeignKey("ArrivalToId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.Location", "DestinationFrom")
+                        .WithMany()
+                        .HasForeignKey("DestinationFromId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "ModeofTransport")
+                        .WithMany()
+                        .HasForeignKey("ModeofTransportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("SmartERP.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "TravelDocumentType")
+                        .WithMany()
+                        .HasForeignKey("TravelDocumentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApprovedBy");
+
+                    b.Navigation("ArrivalTo");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DestinationFrom");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("ModeofTransport");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Status");
+
+                    b.Navigation("TravelDocumentType");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.TravelRequestMember", b =>
+                {
+                    b.HasOne("SmartERP.Models.ProjectMember", "ProjectMember")
+                        .WithMany()
+                        .HasForeignKey("ProjectMemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartERP.Models.TravelRequestHeader", "TravelRequestHeader")
+                        .WithMany()
+                        .HasForeignKey("TravelRequestHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectMember");
+
+                    b.Navigation("TravelRequestHeader");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.UserRoleProfile", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.HasOne("SmartERP.Models.SystemTask", "Task")
+                        .WithMany()
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Role");
+
+                    b.Navigation("Task");
                 });
 
             modelBuilder.Entity("SmartERP.Models.Vendor", b =>
@@ -3667,6 +5206,12 @@ namespace SmartERP.Migrations
                         .WithMany()
                         .HasForeignKey("ModifiedById");
 
+                    b.HasOne("SmartERP.Models.SystemCodeDetail", "Priority")
+                        .WithMany()
+                        .HasForeignKey("PriorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SmartERP.Models.SystemCodeDetail", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
@@ -3690,6 +5235,8 @@ namespace SmartERP.Migrations
                     b.Navigation("CreatedBy");
 
                     b.Navigation("ModifiedBy");
+
+                    b.Navigation("Priority");
 
                     b.Navigation("Role");
 
@@ -3731,9 +5278,24 @@ namespace SmartERP.Migrations
                     b.Navigation("UserType");
                 });
 
+            modelBuilder.Entity("SmartERP.Models.GoodsReceivedNoteHeader", b =>
+                {
+                    b.Navigation("GoodsReceivedNoteLines");
+                });
+
             modelBuilder.Entity("SmartERP.Models.PurchaseHeader", b =>
                 {
                     b.Navigation("PurchaseLines");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.SalesHeader", b =>
+                {
+                    b.Navigation("SalesLines");
+                });
+
+            modelBuilder.Entity("SmartERP.Models.SystemTask", b =>
+                {
+                    b.Navigation("ChildTasks");
                 });
 #pragma warning restore 612, 618
         }

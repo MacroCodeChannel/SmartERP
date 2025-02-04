@@ -21,6 +21,7 @@ namespace SmartERP.Data
             .Property(r => r.Name)
             .HasMaxLength(256);
 
+
             modelBuilder.Entity<IdentityRole>()
             .Property(r => r.NormalizedName)
             .HasMaxLength(256);
@@ -28,10 +29,147 @@ namespace SmartERP.Data
             modelBuilder.Entity<IdentityRole>()
            .Property(r => r.ConcurrencyStamp)
            .HasMaxLength(256);
-            
+
+            modelBuilder.Entity<OrderRequestLine>()
+             .Property(b => b.UnitPrice)
+              .HasPrecision(18, 3)
+             .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<OrderRequestLine>()
+             .Property(b => b.TotalPrice)
+              .HasPrecision(18, 3)
+             .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<TimeSheetLine>()
+           .Property(b => b.TotalHours)
+            .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<PurchaseLine>()
+           .Property(b => b.TotalCost)
+            .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<PurchaseLine>()
+              .Property(b => b.UnitPrice)
+              .HasPrecision(18, 3)
+              .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<PurchaseHeader>()
+            .Property(b => b.TotalAmount)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<SalesHeader>()
+            .Property(b => b.TotalAmount)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+
+            modelBuilder.Entity<SalesLine>()
+            .Property(b => b.UnitPrice)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<SalesLine>()
+            .Property(b => b.TotalCost)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<TravelRequestHeader>()
+           .Property(b => b.AdvanceAmount)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<TravelRequesLine>()
+           .Property(b => b.TotalCost)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<TravelRequesLine>()
+            .Property(b => b.UnitCost)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<ProjectBudgetHeaderLines>()
+              .Property(b => b.UnitCost)
+              .HasPrecision(18, 3)
+              .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<ProjectBudgetHeaderLines>()
+            .Property(b => b.TotalCost)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<ProjectBudgetHeaderLines>()
+            .Property(b => b.Quantity)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<OrderRequest>()
+           .Property(b => b.OrderAmount)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<OrderRequest>()
+            .Property(b => b.PaidAmount)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<Contract>()
+           .Property(b => b.Days)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<Contract>()
+           .Property(b => b.Months)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<Payment>()
+            .Property(b => b.Amount)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<PurchaseLine>()
+            .Property(b => b.Quantity)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+
+            modelBuilder.Entity<Payment>()
+           .Property(b => b.TransferCharges)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+
+            modelBuilder.Entity<PaymentLine>()
+            .Property(b => b.TotalAmount)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<ContractDeliverable>()
+            .Property(b => b.Days)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+            modelBuilder.Entity<Contract>()
+            .Property(b => b.LumpsumAmount)
+            .HasPrecision(18, 3)
+            .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<Contract>()
+           .Property(b => b.DailyRate)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
+            modelBuilder.Entity<Contract>()
+           .Property(b => b.MonthlyRate)
+           .HasPrecision(18, 3)
+           .HasDefaultValueSql("00.000");
+
         }
 
-        
+
         public DbSet<Office> Offices { get; set; }
         public DbSet<SystemCode> SystemCodes { get; set; }
         public DbSet<SystemCodeDetail> SystemCodeDetails { get; set; }
@@ -65,10 +203,25 @@ namespace SmartERP.Data
         public DbSet<NumberSeriesSetup> NumberSeriesSetups { get; set; }
         public DbSet<OrderRequest> OrderRequests { get; set; }
         public DbSet<OrderRequestLine> OrderRequestLines { get; set; }
-
+        public DbSet<SalesHeader> SalesHeaders { get; set; }
+        public DbSet<SalesLine> SalesLines { get; set; }
         public DbSet<SystemSetting> SystemSettings { get; set; }
-
         public DbSet<ApprovalEntry> ApprovalEntries { get; set; }
+        public DbSet<TravelRequestHeader> TravelRequestHeaders { get; set; }
+        public DbSet<TravelRequesLine> TravelRequesLines { get; set; }
+        public DbSet<TravelRequestMember> TravelRequestMembers { get; set; }
+        public DbSet<ProjectBudgetCategory> ProjectBudgetCategories { get; set; }
+        public DbSet<ProjectBudgetHeader> ProjectBudgetHeaders { get; set; }
+        public DbSet<ProjectBudgetHeaderLines> ProjectBudgetHeaderLines { get; set; }
+        public DbSet<ProjectBudgetLine> ProjectBudgetLines { get; set; }
+        public DbSet<ProjectBudgetItem> ProjectBudgetItems { get; set; }
+        public DbSet<GoodsReceivedNoteHeader> GoodsReceivedNoteHeaders { get; set; }
+        public DbSet<GoodsReceivedNoteLine> GoodsReceivedNoteLines { get; set; }
+        public DbSet<SystemTask> SystemRights { get; set; }
+        public DbSet<UserRoleProfile> RoleProfiles { get; set; }
+        public DbSet<ProjectPhase> ProjectPhases { get; set; }
+        public DbSet<ProjectMilestone> ProjectMilestones { get; set; }
+        public DbSet<ContractDeliverable> ContractDeliverables { get; set; }
 
     }
 }

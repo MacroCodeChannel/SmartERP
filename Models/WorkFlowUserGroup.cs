@@ -17,5 +17,6 @@ namespace SmartERP.Models
         public SystemCodeDetail DocumentType { get; set; }
 
 
+
     }
 }

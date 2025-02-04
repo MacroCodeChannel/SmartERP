@@ -22,5 +22,8 @@ namespace SmartERP.Models
         [DisplayName("SWIFT Code")]
         public string SWIFTCode { get; set; }
 
+        [DisplayName("Is Active")]
+        public bool IsActive { get; set; }
+
     }
 }

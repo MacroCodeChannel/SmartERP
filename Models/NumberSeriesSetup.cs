@@ -11,6 +11,7 @@
         public string FirstSerialNo { get; set; }
         public int StatusId { get; set; }
         public SystemCodeDetail Status { get; set; }
+        public bool AllowYearCode { get; set; }
 
 
     }

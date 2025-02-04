@@ -17,5 +17,7 @@ namespace SmartERP.Models
         public Consultant Consultant { get; set; }
         public int? ContractId { get; set; }
         public Consultant Contract { get; set; }
+        public  int StatusId  { get; set; }
+        public SystemCodeDetail Status { get; set; }
     }
 }

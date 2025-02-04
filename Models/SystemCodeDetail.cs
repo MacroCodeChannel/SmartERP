@@ -12,6 +12,8 @@
 
         public int SystemCodeId { get; set; }
         public SystemCode SystemCode { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
 

@@ -18,6 +18,11 @@ namespace SmartERP.Models
         [DisplayName("Sequence No")]
         public int SequenceNo { get; set; } // 1,2,3,4,5,6 (Approvals)
 
+
+        [DisplayName("Workflow User Group")]
+        public int UserGroupMemberId { get; set; } 
+        public WorkFlowUserGroupMember UserGroupMember { get; set; }
+
         [DisplayName("Approver Name")]
         public string ApproverId { get; set; } // 1,2,3,4,5,6 (Approvers), session user
         public ApplicationUser Approver { get; set; }
@@ -43,5 +48,13 @@ namespace SmartERP.Models
 
         [DisplayName("Conroller Name")]
         public string ControllerName { get; set; }
+
+        [DisplayName("Priority Type")]
+        public int PriorityTypeId { get; set; } 
+        public SystemCodeDetail PriorityType { get; set; }
+
+        public string TableName { get; set; }
+
+        public string DocumentNo { get; set; }
     }
 }

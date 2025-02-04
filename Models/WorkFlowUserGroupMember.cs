@@ -18,5 +18,12 @@ namespace SmartERP.Models
 
         public int RoleId { get; set; }
         public SystemCodeDetail Role { get; set; }
+
+        public int SequenceNo { get; set; }
+
+        public int PriorityId { get; set; }
+        public SystemCodeDetail Priority { get; set; }
+
+
     }
 }

@@ -8,17 +8,8 @@ namespace SmartERP.Models
         public int Id { get; set; }
         public string EmpNo { get; set; }
 
-        [DisplayName("First Name")]
-        public string FirstName { get; set; }
-
-        [DisplayName("Middle Name")]
-        public string MiddleName { get; set; }
-
-
-        [DisplayName("Last Name")]
-        public string LastName { get; set; }
-
-        public string FullName => $"{FirstName} {MiddleName} {LastName}";
+        [DisplayName("Full Name")]
+        public string FullName { get; set; }
 
         [DisplayName("Phone Number")]
         public int PhoneNumber { get; set; }
@@ -102,6 +93,9 @@ namespace SmartERP.Models
         public int? ReportsToId { get; set; }
         public Employee ReportsTo { get; set; }
 
+
+        public string? UserAccountId { get; set; }
+        public ApplicationUser UserAccount { get; set; }
     }
 }
 

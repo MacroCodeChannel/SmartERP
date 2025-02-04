@@ -8,12 +8,9 @@
         public string Address { get; set; }
 
         public int ClientTypeId { get; set; }
-
         public SystemCodeDetail ClientType { get; set; }  
-
         public int ClientStatusId { get; set; }
         public SystemCodeDetail ClientStatus { get; set; }
-
         public string FinanceEmailAddress { get; set; }
         public string LeadName { get; set; }
         public string LeadPhoneNumber { get; set; }
